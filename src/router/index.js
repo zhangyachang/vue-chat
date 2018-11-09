@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import login from '../page/login'
 import chatMenu from '../page/chatMenu'
+import chatToFriends from '../page/chatToFriends'
 
 Vue.use(Router)
 
@@ -23,6 +24,10 @@ export default new Router({
       name: 'chatMenu',
       component: chatMenu
     },
-
+    {
+      path: '/chatToFriends',
+      name: 'chatToFriends',
+      component: chatToFriends
+    },
   ]
 })

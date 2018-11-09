@@ -1,5 +1,5 @@
 <template>
-  <div class="userlist flex">
+  <div class="userlist flex flex-row">
     <div class="ul_avator">
       <img :src="userInfo.img" alt="">
     </div>
@@ -20,7 +20,7 @@
 
     },
     created () {
-      console.log(this.userInfo);
+
     }
   }
 </script>
@@ -28,6 +28,7 @@
   .userlist{
     width: 100%;
     height: 100%;
+    padding: 0.2rem 0;
   }
   .userlist .ul_avator{
     overflow: hidden;
@@ -35,7 +36,7 @@
     height: 3.4rem;
     flex-shrink: 0;
     border-radius: 50%;
-    margin: 0.8rem 0 0 0.2rem;
+    margin: 0.8rem 0 0 0;
   }
   .userlist .ul_avator img{
     width: 100%;
@@ -43,10 +44,11 @@
   }
   .userlist .ul_userInfo{
     flex-grow: 1;
+    overflow: hidden;
+    width: 100%;
     position: relative;
     padding: 0.5rem 0 0.5rem 0.5rem;
     border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
   }
   .ul_userInfo p{
     line-height: 2rem;
@@ -56,6 +58,7 @@
     color: #000;
   }
   .ul_userInfo .ul_user_newinfo{
+    width: 85%;
     color: #999;
     font-size: 0.9rem;
     overflow: hidden;
@@ -65,9 +68,8 @@
   .ul_time{
     position: absolute;
     top: 0.7rem;
-    right: 1rem;
+    right: 0.5rem;
     color: #666;
     font-size: 0.9rem;
   }
-
 </style>
