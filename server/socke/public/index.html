@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<body>
+    <h1>主页面111</h1>
+    <div>
+        <input class="inp" type="text">
+        <button class="btn">发送</button>
+    </div>
+    <div class="content">
+
+    </div>
+
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+        // 聊天的一些方法工具函数
+        var chat = (function(){
+            return {
+                sendMessage (socket, str) {
+
+                }
+            }
+        })();
+
+
+        (function(){
+            var socket = io();
+            socket.on('wulv', (err, data) => {
+                socket.emit('xiexie', {name: '收到'});
+            })
+            var $Inp = $('.inp'),
+                $Btn = $('.btn'),
+                $Content = $('.content');
+            
+            $Btn.on('click', function(){
+                var content = $Inp.val();
+                socket.emit('chat message', content);
+                $Inp.val('');
+            });
+
+            socket.on('chat message', (msg) => {
+                console.log(msg);
+                var str = `
+                    <p>${msg}</p>
+                `;
+                $Content.html($Content.html()+ str); 
+            })
+            
+        })();
+
+        
+
+    
+    </script>
+
+
+
+</body>
+</html>
