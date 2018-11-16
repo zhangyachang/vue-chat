@@ -58,7 +58,54 @@
         }
         // 验证在这里验证吧
         console.log(userInfo)
+        // 跳转页面
+        this.$indicator.open({
+          text: '登陆中...',
+          spinnerType: 'fading-circle'
+        });
+        this.$axios.post(this.$config.ioHttp+'/login',userInfo)
+          .then(res => {
+            console.log(res)
+            if(res.data.status == '200'){
+              // 在这里假装有数据库保存到localStorage里面
+              switch (userInfo.user) {
+                case 'aaa' :
+                  window.localStorage.userId = 'aaa';
+                  window.localStorage.username = '机制的小aaa';
+                  window.localStorage.avator = 'https://ss0.baidu.com/73x1bjeh1BF3odCf/it/u=876690331,1629968853&fm=85&s=BB84DB01A8323184483C9985030060A3';
+                  break;
+                case 'bbb' :
+                  window.localStorage.userId = 'bbb';
+                  window.localStorage.username = '机制的小bbb';
+                  window.localStorage.avator = 'https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=2443786011,1290396476&fm=85&s=FD021374DF2A421D469A74D9030070BC';
+                  break;
+                case 'ccc' :
+                  window.localStorage.userId = 'ccc';
+                  window.localStorage.username = '机制的小ccc';
+                  window.localStorage.avator = 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1091628847,41930541&fm=27&gp=0.jpg';
+                  break;
+              }
 
+              this.$indicator.close()
+              this.$toast({
+                message: '登录成功',
+                duration: 1000
+              })
+              this.$router.push({name: 'chatMenu'})
+            }else if(res.data.status == '400'){
+              this.$indicator.close()
+              this.$toast({
+                message: '登录失败',
+                duration: 1000
+              })
+            }else{
+              console.log('莫名的错误');
+            }
+
+          })
+          .catch(err => {
+            console.log(err)
+          })
       }
     }
   }
@@ -92,7 +139,7 @@
     width: 100%;
     border: none;
     border-bottom: 1px solid #eee;
-    padding:0.2rem 0 0.5rem 0;
+    padding:0.4rem 0 0.5rem 0;
     font-size: 1.1rem;
     line-height: 2rem;
     text-indent: 0.5rem;
@@ -101,14 +148,16 @@
   .login .login_inp .login_btn{
     display: block;
     width: 90%;
-    height: 2.5rem;
+    height: 3rem;
     margin: auto;
-    margin-top: 6rem;
-    background: #FED9AD;
-    color: #FEF4E0;
-    text-align: center;
+    margin-top: 5rem;
     border: none;
     outline: none;
+    font-size: 1.2rem;
+    text-align: center;
+    background: #FED9AD;
+    color: #FEF4E0;
+
   }
   .login .login_inp .login_other_info{
     width: 90%;

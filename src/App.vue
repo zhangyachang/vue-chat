@@ -29,6 +29,14 @@ export default {
     width: 100%;
     height: 100%;
   }
+  ul li, ol li{
+    list-style: none;
+  }
+  .clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
   /*//屏幕宽度低于600px，设置块大小*/
   @media screen and (max-width:340px) {
     html,body{
